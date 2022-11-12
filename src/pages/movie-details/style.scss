@@ -1,0 +1,27 @@
+.movie-details{
+    display: flex;
+    gap: 5%;
+    h1{
+        margin-bottom: 15px;
+        &+p{
+            margin-bottom: 15px;
+        }
+    }
+    .play-triller{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+        padding: 5px 20px;
+        width: 148px;
+        border-radius: 10px;
+        border: 1px solid rgb(67, 112, 93);
+        background-color: rgb(27, 139, 102);
+        color: #FFFFFF;
+        margin: 15px 0;
+        svg{
+            width: 30px;
+            fill: #FFFFFF;
+        }
+    }
+}
