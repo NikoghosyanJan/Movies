@@ -1,0 +1,30 @@
+.personal-page{
+    display: flex;
+    gap: 2%;
+    justify-content: space-between;
+    .personal-nav{
+        width: 20%;
+        min-width: 184px;
+
+
+        ul{
+            li{
+                margin: 10px 0;
+                background-color: #f39c2b;
+                list-style-type: none;
+                &.active{
+                border-radius: 10px;
+                        border: 1px solid black;
+                }
+            }
+            a{
+                padding: 10px 20px;
+                display: block;
+                text-decoration: none;
+                color: #FFFFFF;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

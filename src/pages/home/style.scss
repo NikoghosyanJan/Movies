@@ -52,62 +52,79 @@
             }
         }
     }
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        .movie-item {
-            width: 23%;
-            min-width: 280px;
-            padding: 10px;
-            background-color: #f39c2b;
-            border-radius: 10px;
-            transition: 0.3s;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    .movie-item {
+        width: 23%;
+        min-width: 280px;
+        padding: 10px;
+        background-color: #f39c2b;
+        border-radius: 10px;
+        transition: 0.3s;
+        overflow: hidden;
+        position: relative;
+        position: relative;
+
+        .poster {
+           opacity: 0;
+            transition: 0.5s;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+        .image-area {
+            width: 100%;
+
+            img {
+                border-radius: 10px;
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+        .title {
+            font-weight: bold;
+            font-size: 18px;
+            margin: 15px 0 5px;
+        }
+        .overview {
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            font-weight: 500;
             overflow: hidden;
-            position: relative;
-
-            .poster {
-               opacity: 0;
+            white-space: normal;
+        }
+        p,
+        span,
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px 2px #f39c2b;
+            .poster{
+                opacity: 1;
                 transition: 0.5s;
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
             }
-            .image-area {
-                width: 100%;
-
-                img {
-                    border-radius: 10px;
-                    width: 100%;
-                    object-fit: contain;
-                }
+        }
+        .heart{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            z-index: 98;
+            svg{
+                width: 40px;
+                height: 40px;
             }
-            .title {
-                font-weight: bold;
-                font-size: 18px;
-                margin: 15px 0 5px;
-            }
-            .overview {
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                display: -webkit-box;
-                font-weight: 500;
-                overflow: hidden;
-                white-space: normal;
-            }
-            p,
-            span,
-            a {
-                text-decoration: none;
-                color: #ffffff;
-            }
-            &:hover {
-                transform: scale(1.05);
-                box-shadow: 0 0 10px 2px #f39c2b;
-                .poster{
-                    opacity: 1;
-                    transition: 0.5s;
+            &.active{
+                svg{
+                    fill: red;
+                    stroke: red;
                 }
             }
         }

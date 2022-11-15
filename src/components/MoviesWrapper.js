@@ -1,35 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { IMG_BASE_URL } from "../constants"
+import MovieItem from "./MovieItem";
 
-function MoviesWrapper({ movies, loadMore, total }) {
-    
+export default function MoviesWrapper({ movies, loadMore, total }) {
+    const wishList = JSON.parse(localStorage.getItem("wishList")) || [];
+
+    const addToWishList = (movie) => {
+    const wishList = JSON.parse(localStorage.getItem("wishList")) || [];
+
+        if (wishList.length) {
+            if (!wishList.some(item => item.id === movie.id)) {
+                wishList.push(movie);
+                localStorage.setItem("wishList", JSON.stringify(wishList))
+            } else {
+                const index = wishList.findIndex(item => item.id === movie.id);
+                wishList.splice(index, 1);
+                localStorage.setItem("wishList", JSON.stringify(wishList))
+            }
+        } else {
+            localStorage.setItem("wishList", JSON.stringify([...JSON.parse(localStorage.getItem('wishList') )|| [], movie]))
+        }
+    }
+
     return (
         <div className="wrapper">
             <div className="container">
                 {movies.map(movie => (
-                    <div key={movie.id} className="movie-item">
-                        <Link to={`/movie-details/?id=${movie.id}`}>
-                            <div className="image-area">
-                                <img src={IMG_BASE_URL + movie.backdrop_path} alt={movie.name} />
-                                <img className="poster" src={IMG_BASE_URL + movie.poster_path} alt={movie.name}/>
-                            </div>
-                            <div className="description">
-                                <p className="title">{movie.title}</p>
-                                <div className="d-flex">
-                                    <span>★ {movie.vote_average}</span>
-                                    <span></span>
-                                </div>
-                                <div className="d-flex">
-                                    <span>First release: </span>
-                                    <span>{movie.release_date}</span>
-                                </div>
-                                <p className="overview">
-                                    {movie.overview}
-                                </p>
-                            </div>
-                        </Link>
-                    </div>
+                    <MovieItem
+                        key={movie.id}
+                        isWished={wishList.some(item => item.id === movie.id)}
+                        addToWishList={addToWishList}
+                        movie={movie}
+                    />
                 ))}
             </div>
             <div className="showed">
@@ -41,5 +42,3 @@ function MoviesWrapper({ movies, loadMore, total }) {
         </div>
     )
 }
-
-export default React.memo(MoviesWrapper)

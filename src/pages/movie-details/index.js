@@ -3,7 +3,6 @@ import { Loader } from "../../components/Loader";
 import { getData } from "../../helpers";
 import { API_KEY, IMG_BASE_URL } from "../../constants";
 import "./style.scss";
-import { Link } from "react-router-dom";
 
 export default function MovieDetails() {
     const queryParams = new URLSearchParams(window.location.search)
